@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hawana Resort</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         * {
             margin: 0;
@@ -17,31 +19,108 @@
         }
 
         /* Navigation Bar Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #ffd700;
+            --text-color: #495057;
+            --background-color: #f8f9fa;
+            --shadow-color: rgba(52, 152, 219, 0.3);
+        }
+
         nav {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            padding: 10px 20px;
+            width: 100%;
+            height: 10vh;
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: white;
+            padding: 0 20px;
         }
 
-        nav ul {
-            list-style: none;
+        .logo {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(255,215,0,0.3);
+        }
+
+        .hamburg,
+        .cancel {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: white;
+            display: none;
+            font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
+        }
+
+        .nav-container .links {
             display: flex;
-            gap: 20px;
         }
 
-        nav ul li a {
+        .nav-container .links a {
+            position: relative;
+            font-size: 1.1rem;
             color: white;
+            margin: 0 20px;
             text-decoration: none;
             font-weight: 500;
+            transition: 0.3s linear;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
 
-        nav ul li a:hover {
-            text-decoration: underline;
+        .nav-container .links a:hover {
+            background: rgba(255,255,255,0.1);
         }
 
+        .dropdown {
+            z-index: 100;
+            position: absolute;
+            top: 0;
+            transform: translateY(-500px);
+            width: 100%;
+            height: auto;
+            backdrop-filter: blur(10px) brightness(60%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .dropdown.active {
+            transform: translateY(0);
+        }
+
+        .dropdown .links a {
+            display: flex;
+            color: white;
+            text-decoration: none;
+            justify-content: center;
+            padding: 15px 0;
+            align-items: center;
+            transition: 0.2s linear;
+        }
+
+        .dropdown .links a:hover {
+            background: rgba(52, 152, 219, 0.8);
+        }
+
+        /* Gallery Header */
         .gallery-header {
             text-align: center;
             padding: 60px 20px;
@@ -303,39 +382,79 @@
             text-decoration: underline;
         }
 
+        /* Media Queries for Responsiveness */
+        @media (max-width: 992px) {
+            .nav-container .links {
+                display: none;
+            }
+            .hamburg,
+            .cancel {
+                display: block;
+            }
+        }
+
         @media (max-width: 768px) {
+            .gallery-header h1 {
+                font-size: 2.5rem;
+            }
+
             .gallery-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
+
             .image-caption {
                 padding: 10px;
                 font-size: 14px;
             }
-            .gallery-header h1 {
-                font-size: 2.5rem;
+
+            /* Center logo only on mobile devices */
+            .nav-container {
+                justify-content: center;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                margin: 0 auto; /* Center the logo */
+            }
+
+            .hamburg {
+                right: 10px; /* Adjust hamburger icon position */
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
     <nav>
-        <a href="index.html">
-            <img src="Logo.png" alt="BrandLift Logo" class="logo">
-        </a>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-
-            <li><a href="About Us.html">About</a></li>
-            <li><a href="Terms&Condion.html">Terms & Conditions</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="index.html" class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Brand<span>Lift</span>
+            </a>
+            <div class="links">
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="index.html">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="About Us.html">About</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="Terms&Condion.html">Terms & Conditions</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="contact.html">Contact</a></div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="hamburg()" aria-label="Open Menu"></i>
+        </div>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="About Us.html">About</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()" aria-label="Close Menu"></i>
+            </div>
+        </div>
     </nav>
 
+    <!-- Gallery Header -->
     <header class="gallery-header">
         <h1>Hawana Resort</h1>
         <p>30 Days Marketing Strategy With Social Media Post</p>
     </header>
 
+    <!-- Gallery Container -->
     <div class="gallery-container">
         <div class="gallery-grid">
             <!-- Image 1 -->
@@ -634,7 +753,18 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+        AOS.init({ offset: 0 });
+
+        function hamburg() {
+            document.querySelector(".dropdown").classList.add("active");
+        }
+
+        function cancel() {
+            document.querySelector(".dropdown").classList.remove("active");
+        }
+
         // Strategy Content for each image
         const strategies = [
             { title: "Image 1 Strategy", content: "📌 Strategy for Image 1" },

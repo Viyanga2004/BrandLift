@@ -3,33 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BrandLift - A social media marketing agency that crafts visually captivating and results-driven campaigns.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>BrandLift</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #ffd700;
+            --text-color: #495057;
+            --background-color: #f8f9fa;
+            --shadow-color: rgba(52, 152, 219, 0.3);
+        }
+
         * {
             padding: 0;
             margin: 0;
-            font-family: 'Poppins', sans-serif;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
+
         body {
             width: 100%;
-            min-height: 100vh; /* Ensure body takes at least the full viewport height */
+            min-height: 100vh;
             display: flex;
-            flex-direction: column; /* Stack elements vertically */
-            background: #f8f9fa;
+            flex-direction: column;
+            background: var(--background-color);
         }
+
         nav {
             width: 100%;
             height: 10vh;
             position: sticky;
             top: 0;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            z-index: 1000; /* Ensure nav stays on top */
+            z-index: 1000;
         }
+
         .nav-container {
             width: 100%;
             height: 100%;
@@ -37,16 +49,19 @@
             justify-content: space-around;
             align-items: center;
         }
+
         .logo {
             color: white;
             font-size: 2rem;
             font-weight: bold;
             letter-spacing: 1px;
         }
+
         .logo span {
-            color: #ffd700;
+            color: var(--accent-color);
             text-shadow: 0 0 10px rgba(255,215,0,0.3);
         }
+
         .hamburg,
         .cancel {
             cursor: pointer;
@@ -57,9 +72,11 @@
             display: none;
             font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
         }
+
         .nav-container .links {
             display: flex;
         }
+
         .nav-container .links a {
             position: relative;
             font-size: 1.1rem;
@@ -71,9 +88,11 @@
             padding: 5px 10px;
             border-radius: 4px;
         }
+
         .nav-container .links a:hover {
             background: rgba(255,255,255,0.1);
         }
+
         .dropdown {
             z-index: 100;
             position: absolute;
@@ -82,8 +101,13 @@
             width: 100%;
             height: auto;
             backdrop-filter: blur(10px) brightness(60%);
-            transition: 0.2s linear;
+            transition: transform 0.3s ease-in-out;
         }
+
+        .dropdown.active {
+            transform: translateY(0);
+        }
+
         .dropdown .links a {
             display: flex;
             color: white;
@@ -93,18 +117,21 @@
             align-items: center;
             transition: 0.2s linear;
         }
+
         .dropdown .links a:hover {
             background: rgba(52, 152, 219, 0.8);
         }
+
         section {
             width: 100%;
-            flex: 1; /* Allow section to grow and take remaining space */
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
+
         .main-container {
             width: 100%;
             max-width: 1200px;
@@ -114,92 +141,108 @@
             flex-wrap: wrap;
             gap: 20px;
         }
+
         .main-container .image {
             width: 450px;
             height: 450px;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(52, 152, 219, 0.3);
-            border: 3px solid #3498db;
+            box-shadow: 0 0 30px var(--shadow-color);
+            border: 3px solid var(--primary-color);
         }
+
         .main-container .image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .main-container .image:hover {
             animation: animate 1.5s ease-in-out infinite;
         }
+
         @keyframes animate {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+
         .main-container .content {
-            color: #2c3e50;
+            color: var(--secondary-color);
             width: 40%;
             min-height: 100px;
             padding: 20px;
         }
+
         .content h1 {
             font-size: 2.5rem;
             margin-bottom: 15px;
         }
+
         .content h1 span {
-            color: #3498db;
-            text-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--shadow-color);
         }
+
         .content .typewriter {
             font-size: 2rem;
             font-weight: 600;
             margin-bottom: 20px;
         }
+
         .content .typewriter-text {
-            color: #3498db;
+            color: var(--primary-color);
         }
+
         .content p {
             font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 25px;
-            color: #495057;
+            color: var(--text-color);
         }
+
         .social-links {
             display: flex;
             gap: 15px;
             margin-bottom: 30px;
         }
+
         .social-links a {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #3498db;
+            background: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-decoration: none;
             transition: 0.3s ease;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 5px 15px var(--shadow-color);
         }
+
         .social-links a:hover {
             transform: translateY(-3px);
-            background: #2c3e50;
+            background: var(--secondary-color);
         }
+
         .content button {
             padding: 15px 40px;
-            background: linear-gradient(135deg, #3498db, #2c3e50);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
             border-radius: 30px;
             font-size: 1.1rem;
             cursor: pointer;
             transition: 0.3s ease;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 5px 15px var(--shadow-color);
         }
+
         .content button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
         }
+
         @media (max-width: 992px) {
             .main-container {
                 flex-direction: column;
@@ -228,6 +271,7 @@
                 display: block;
             }
         }
+
         @media (max-width: 576px) {
             .content h1 {
                 font-size: 2rem;
@@ -240,23 +284,26 @@
                 padding: 12px 0;
             }
         }
-        /* New styles for projects section */
+
         .projects-section {
             padding: 50px 20px;
             background: #fff;
             text-align: center;
         }
+
         .projects-section h2 {
             font-size: 2.5rem;
             margin-bottom: 40px;
-            color: #2c3e50;
+            color: var(--secondary-color);
         }
+
         .projects-container {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             gap: 20px;
         }
+
         .project-card {
             width: 300px;
             background: #fff;
@@ -265,53 +312,62 @@
             overflow: hidden;
             transition: transform 0.3s ease;
         }
+
         .project-card:hover {
             transform: translateY(-10px);
         }
+
         .project-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
+
         .project-card h3 {
             font-size: 1.5rem;
             margin: 15px 0;
-            color: #3498db;
+            color: var(--primary-color);
         }
+
         .project-card p {
             font-size: 1rem;
-            color: #495057;
+            color: var(--text-color);
             padding: 0 15px 15px;
         }
+
         .project-card a {
             display: inline-block;
             margin: 15px;
             padding: 10px 20px;
-            background: #3498db;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
             border-radius: 5px;
             transition: background 0.3s ease;
         }
+
         .project-card a:hover {
-            background: #2c3e50;
+            background: var(--secondary-color);
         }
-        /* Footer Styles */
+
         footer {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
             text-align: center;
             padding: 20px 0;
-            margin-top: auto; /* Push footer to the bottom */
+            margin-top: auto;
         }
+
         footer p {
             margin: 0;
             font-size: 14px;
         }
+
         footer a {
-            color: yellow;
+            color: var(--accent-color);
             text-decoration: none;
         }
+
         footer a:hover {
             text-decoration: underline;
         }
@@ -327,27 +383,16 @@
                 <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="index.html">Home</a></div>
                 <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="About Us.html">About</a></div>
                 <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="Terms&Condion.html">Terms & Conditions</a></div>
-            
                 <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="contact.html">Contact</a></div>
-
-
-
-
-
-
-
-
-
             </div>
-
-            <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+            <i class="fa-solid fa-bars hamburg" onclick="hamburg()" aria-label="Open Menu"></i>
         </div>
         <div class="dropdown">
             <div class="links">
                 <a href="index.html">Home</a>
-                <a href="Brand Lift\About Us.html">About</a>
-                <a href="#">Contact</a>
-                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+                <a href="About Us.html">About</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()" aria-label="Close Menu"></i>
             </div>
         </div>
     </nav>
@@ -361,100 +406,39 @@
                 <div class="typewriter" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="900">We are <span class="typewriter-text"></span><label>|</label></div>
                 <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">“As a dynamic social media marketing agency, we blend creativity with strategy to craft visually captivating and results-driven campaigns that engage audiences, drive growth, and elevate brands in the digital world.”</p>
                 <div class="social-links">
-                    <a href="https://github.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1300"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.facebook.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1400"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1500"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://x.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1600"><i class="fa-brands fa-twitter"></i></a>
-
-                    </div>
-
-                    <div class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
-                    <button><a href="contact.html">Hire Us</button></a>
+                    <a href="https://github.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1300" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.facebook.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1400" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1500" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://x.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1600" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+                <div class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
+                    <button><a href="contact.html">Hire Us</a></button>
                 </div>
             </div>
         </div>
     </section>
     <section class="projects-section">
         <h2 data-aos="fade-up" data-aos-duration="1500">Our Projects</h2>
-        <div class="projects-container">
-            <div class="project-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                <img src="Home Image\Hawana Resort.jpeg" alt="Project 1">
-                <h3>Hawana Resort</h3>
-                <p>Description of Project 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="Hawana Resort.html">View Project</a>
-            </div>
-            <div class="project-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
-                <img src="coming-soon.png" alt="Project 2">
-                <h3>Project 2</h3>
-                <p>Description of Project 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#">View Project</a>
-            </div>
-            <div class="project-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
-                <img src="coming-soon.png" alt="Project 3">
-                <h3>Project 3</h3>
-                <p>Description of Project 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#">View Project</a>
-            </div>
-            <div class="project-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
-                <img src="coming-soon.png" alt="Project 4">
-                <h3>Project 4</h3>
-                <p>Description of Project 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#">View Project</a>
-            </div>
-            <div class="project-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
-                <img src="coming-soon.png" alt="Project 5">
-                <h3>Project 5</h3>
-                <p>Description of Project 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#">View Project</a>
-            </div>
-            <div class="project-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
-                <img src="coming-soon.png" alt="Project 6">
-                <h3>Project 6</h3>
-                <p>Description of Project 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#">View Project</a>
-            </div>
-
- <div class="project-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
-                <img src="coming-soon.png" alt="Project 7">
-                <h3>Project 7</h3>
-                <p>Description of Project 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#">View Project</a>
-            </div>
-
-
- <div class="project-card" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="800">
-                <img src="coming-soon.png" alt="Project 8">
-                <h3>Project 8</h3>
-                <p>Description of Project 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#">View Project</a>
-            </div>
-
-
-
-
-
-
-            
+        <div class="projects-container" id="projects-container">
+            <!-- Projects will be dynamically added here -->
         </div>
-        
     </section>
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 BrandLift. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="Terms&Condion.html">Terms of Service</a>       </p>
+        <p>&copy; 2025 BrandLift. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="Terms&Condion.html">Terms of Service</a></p>
     </footer>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({offset: 0});
+        AOS.init({ offset: 0 });
 
         function hamburg() {
-            document.querySelector(".dropdown").style.transform = "translateY(0)";
+            document.querySelector(".dropdown").classList.add("active");
         }
 
         function cancel() {
-            document.querySelector(".dropdown").style.transform = "translateY(-500px)";
+            document.querySelector(".dropdown").classList.remove("active");
         }
 
-        // Enhanced Typewriter Effect
+        // Typewriter Effect
         const texts = ["SOCIAL MEDIA MANAGER", "DIGITAL MARKETING SPECIALIST", "CONTENT STRATEGIST", "SOCIAL MEDIA STRATEGIST", "BRAND MANAGER", "COMMUNITY MANAGER", "INFLUENCER MARKETING EXPERT", "PAID MEDIA SPECIALIST", "SEO & SEM EXPERT", "CONTENT CREATOR", "GROWTH HACKER", "PERFORMANCE MARKETER", "CAMPAIGN MANAGER", "EMAIL MARKETING SPECIALIST", "PPC SPECIALIST", "BRAND CONSULTANT", "SOCIAL MEDIA ANALYST", "CREATIVE DIRECTOR", "E-COMMERCE MARKETER"];
         const textElement = document.querySelector(".typewriter-text");
         let textIndex = 0;
@@ -484,6 +468,37 @@
 
             setTimeout(typeWriter, isDeleting ? deletingSpeed : typingSpeed);
         }
+
+        // Dynamically Add Projects
+        const projects = [
+            { name: "Hawana Resort", image: "Home Image/Hawana Resort.jpeg", description: "A luxurious resort offering world-class amenities.", link: "Hawana Resort.html" },
+            { name: "Project 2", image: "coming-soon.png", description: "Description of Project 2.", link: "#" },
+            { name: "Project 3", image: "coming-soon.png", description: "Description of Project 3.", link: "#" },
+            { name: "Project 4", image: "coming-soon.png", description: "Description of Project 4.", link: "#" },
+            { name: "Project 5", image: "coming-soon.png", description: "Description of Project 5.", link: "#" },
+            { name: "Project 6", image: "coming-soon.png", description: "Description of Project 6.", link: "#" },
+            { name: "Project 7", image: "coming-soon.png", description: "Description of Project 7.", link: "#" },
+            { name: "Project 8", image: "coming-soon.png", description: "Description of Project 8.", link: "#" }
+        ];
+
+        const projectsContainer = document.getElementById("projects-container");
+
+        projects.forEach((project, index) => {
+            const projectCard = document.createElement("div");
+            projectCard.classList.add("project-card");
+            projectCard.setAttribute("data-aos", "fade-up");
+            projectCard.setAttribute("data-aos-duration", "1500");
+            projectCard.setAttribute("data-aos-delay", `${200 + (index * 200)}`);
+
+            projectCard.innerHTML = `
+                <img src="${project.image}" alt="${project.name}">
+                <h3>${project.name}</h3>
+                <p>${project.description}</p>
+                <a href="${project.link}">View Project</a>
+            `;
+
+            projectsContainer.appendChild(projectCard);
+        });
 
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(typeWriter, 500);

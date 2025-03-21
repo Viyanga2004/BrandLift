@@ -42,8 +42,9 @@
             width: 100%;
             height: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
+            padding: 0 20px;
         }
 
         .logo {
@@ -51,6 +52,7 @@
             font-size: 2rem;
             font-weight: bold;
             letter-spacing: 1px;
+            text-decoration: none;
         }
 
         .logo span {
@@ -312,24 +314,36 @@
             .team-member p {
                 font-size: 0.9rem;
             }
+
+            /* Center logo only on mobile devices */
+            .nav-container {
+                justify-content: center;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                margin: 0 auto; /* Center the logo */
+            }
+
+            .hamburg {
+                right: 10px; /* Adjust hamburger icon position */
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav>
-<a href="index.html">
-            <img src="Logo.png" alt="BrandLift Logo" class="logo">
-        </a>
-        <div class="hamburger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-
-
-
-        
+        <div class="nav-container">
+            <a href="index.html" class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Brand<span>Lift</span>
+            </a>
+            <div class="links">
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="index.html">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="About Us.html">About</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="Terms&Condion.html">Terms & Conditions</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="contact.html">Contact</a></div>
+            </div>
             <i class="fa-solid fa-bars hamburg" onclick="hamburg()" aria-label="Open Menu"></i>
         </div>
         <div class="dropdown">

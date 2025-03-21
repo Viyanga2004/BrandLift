@@ -26,6 +26,10 @@
             color: white;
         }
 
+        nav .logo {
+            height: 40px;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
@@ -40,6 +44,20 @@
 
         nav ul li a:hover {
             text-decoration: underline;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
         }
 
         /* About Us Header */
@@ -183,7 +201,27 @@
             text-decoration: underline;
         }
 
+        /* Media Queries for Responsiveness */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: linear-gradient(135deg, #2c3e50, #3498db);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 10px 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
             .about-header h1 {
                 font-size: 2.5rem;
             }
@@ -196,6 +234,36 @@
                 font-size: 2rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .about-header h1 {
+                font-size: 2rem;
+            }
+
+            .about-header p {
+                font-size: 1rem;
+            }
+
+            .about-content .text h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-content .text p {
+                font-size: 1rem;
+            }
+
+            .team-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .team-member h3 {
+                font-size: 1.2rem;
+            }
+
+            .team-member p {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -204,7 +272,12 @@
         <a href="index.html">
             <img src="Logo.png" alt="BrandLift Logo" class="logo">
         </a>
-        <ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul id="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="About Us.html">About</a></li>
             <li><a href="Terms&Condion.html">Terms & Conditions</a></li>
@@ -271,5 +344,12 @@
     <footer>
         <p> &copy; 2025 BrandLift. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="Terms&Condion.html">Terms of Service</a></p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

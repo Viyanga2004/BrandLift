@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BrandLift</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* About Us Header */
+        .about-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .about-header h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* About Us Content */
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .about-content .text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-content .text h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .about-content .text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .about-content .image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-content .image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Team Section */
+        .team-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .team-section h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .team-member {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team-member img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .team-member h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #777;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: yellow;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .about-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .team-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="Index.html">
+            <img src="Logo.png" alt="BrandLift Logo" class="logo">
+        </a>
+        <ul>
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="About Us.html">About</a></li>
+            <li><a href="Terms&Condion.html">Terms & Conditions</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Us Header -->
+    <header class="about-header">
+        <h1>About BrandLift</h1>
+        <p>Your Partner in Social Media Marketing Success</p>
+    </header>
+
+    <!-- About Us Content -->
+    <div class="about-container">
+        <div class="about-content">
+            <div class="text">
+                <h2>Who We Are</h2>
+                <p>
+                    BrandLift is a leading social media marketing company dedicated to helping businesses grow their online presence. 
+                    With a team of creative strategists, content creators, and digital marketing experts, we craft tailored solutions 
+                    that drive engagement, increase brand awareness, and deliver measurable results.
+                </p>
+                <p>
+                    Our mission is to empower businesses to thrive in the digital world by leveraging the power of social media. 
+                    Whether you're a startup or an established brand, we provide innovative strategies to help you connect with your 
+                    audience and achieve your goals.
+                </p>
+            </div>
+            <div class="image">
+                <img src="About Us Image\main.png" alt="main">
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="team-section">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="About Us Image\dp (1).jpg" alt="Team Member 1">
+                    <h3>V.Sathsarani</h3>
+                    <p>CEO & Founder</p>
+                </div>
+                <div class="team-member">
+                    <img src="About Us Image\dp (2).png" alt="Team Member 2">
+                    <h3>C.Madhusankha</h3>
+                    <p>Creative Director</p>
+                </div>
+                <div class="team-member">
+                    <img src="About Us Image\dp (1).png" alt="Team Member 3">
+                    <h3>H.Madhuwantha</h3>
+                    <p>Social Media Strategist</p>
+                </div>
+                <div class="team-member">
+                    <img src="About Us Image\dp (2).jpg" alt="Team Member 4">
+                    <h3>M.Shehara</h3>
+                    <p>Content Creator</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>❤️Sri Lanka❤️ &copy; 2025 BrandLift. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="Terms&Condion.html">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

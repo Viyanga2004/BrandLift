@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="Home Image/favicon.ico">
+    <!-- Optional: Additional favicon formats -->
+    <link rel="icon" type="image/png" href="Home Image/favicon.ico">
+    <link rel="apple-touch-icon" href="Home Image/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="Home Image/favicon.ico">
+
+
+
+
+
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawana Resort</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+        }
+
+        /* Navigation Bar Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #ffd700;
+            --text-color: #495057;
+            --background-color: #f8f9fa;
+            --shadow-color: rgba(52, 152, 219, 0.3);
+        }
+
+        nav {
+            width: 100%;
+            height: 10vh;
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(255,215,0,0.3);
+        }
+
+        .hamburg,
+        .cancel {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: white;
+            display: none;
+            font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
+        }
+
+        .nav-container .links {
+            display: flex;
+        }
+
+        .nav-container .links a {
+            position: relative;
+            font-size: 1.1rem;
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s linear;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .nav-container .links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .dropdown {
+            z-index: 100;
+            position: absolute;
+            top: 0;
+            transform: translateY(-500px);
+            width: 100%;
+            height: auto;
+            backdrop-filter: blur(10px) brightness(60%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .dropdown.active {
+            transform: translateY(0);
+        }
+
+        .dropdown .links a {
+            display: flex;
+            color: white;
+            text-decoration: none;
+            justify-content: center;
+            padding: 15px 0;
+            align-items: center;
+            transition: 0.2s linear;
+        }
+
+        .dropdown .links a:hover {
+            background: rgba(52, 152, 219, 0.8);
+        }
+
+        /* Gallery Header */
+        .gallery-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .gallery-header h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .image-wrapper {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .image-caption {
+            padding: 15px;
+            text-align: center;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            font-weight: 500;
+        }
+
+        /* View Strategy Button */
+        .view-strategy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            color: black;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 2;
+            transition: background 0.3s ease;
+        }
+
+        .view-strategy-btn:hover {
+            background: #f0f0f0;
+        }
+
+        /* Enhanced Popup Styles */
+        .strategy-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, #2c3e50, #3498db);
+            padding: 40px 30px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+            max-width: 500px;
+            width: 90%;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .strategy-popup::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 30px;
+            z-index: -1;
+            background: linear-gradient(145deg, #2c3e50, #3498db);
+            filter: blur(15px);
+            opacity: 0.3;
+        }
+
+        .strategy-popup .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 24px;
+            line-height: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .strategy-popup .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .strategy-popup h3 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .strategy-popup h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .strategy-popup p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .strategy-popup .strategy-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Enhanced Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 5px;
+        }
+
+        .lightbox-caption {
+            margin-top: 15px;
+            font-size: 1.2em;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #ccc;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: yellow;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 992px) {
+            .nav-container .links {
+                display: none;
+            }
+            .hamburg,
+            .cancel {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .image-caption {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            /* Center logo only on mobile devices */
+            .nav-container {
+                justify-content: center;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                margin: 0 auto; /* Center the logo */
+            }
+
+            .hamburg {
+                right: 10px; /* Adjust hamburger icon position */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Brand<span>Lift</span>
+            </a>
+            <div class="links">
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="index.html">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="About Us.html">About</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="Terms&Condion.html">Terms & Conditions</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="contact.html">Contact</a></div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="hamburg()" aria-label="Open Menu"></i>
+        </div>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="About Us.html">About</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()" aria-label="Close Menu"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gallery Header -->
+    <header class="gallery-header">
+        <h1>Golden Rose</h1>
+        <p>30 Days Marketing Strategy With Social Media Post</p>
+    </header>
+
+    <!-- Gallery Container -->
+    <div class="gallery-container">
+        <div class="gallery-grid">
+            <!-- Image 1 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 1)">View Strategy</button>
+                    <img src="Golden Rose\GRose 1.jpeg" class="gallery-image" alt="Image 1" onclick="openLightbox('Hawana Resort/Hawana 1.jpeg', '01')">
+                </div>
+                <div class="image-caption">01</div>
+            </div>
+
+            <!-- Image 2 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 2)">View Strategy</button>
+                    <img src="Golden Rose\GRose 2.jpeg" class="gallery-image" alt="Image 2" onclick="openLightbox('Hawana Resort/Hawana 2.jpeg', '02')">
+                </div>
+                <div class="image-caption">02</div>
+            </div>
+
+            <!-- Image 3 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 3)">View Strategy</button>
+                    <img src="Golden Rose\GRose 3.jpeg" class="gallery-image" alt="Image 3" onclick="openLightbox('Hawana Resort/Hawana 3.jpeg', '03')">
+                </div>
+                <div class="image-caption">03</div>
+            </div>
+
+            <!-- Image 4 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 4)">View Strategy</button>
+                    <img src="Golden Rose\GRose 4.jpeg" class="gallery-image" alt="Image 4" onclick="openLightbox('Hawana Resort/Hawana 4 .jpeg', '04')">
+                </div>
+                <div class="image-caption">04</div>
+            </div>
+
+            <!-- Image 5 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 5)">View Strategy</button>
+                    <img src="Golden Rose\GRose 5.jpeg" class="gallery-image" alt="Image 5" onclick="openLightbox('Hawana Resort/Hawana 5 .jpeg', '05')">
+                </div>
+                <div class="image-caption">05</div>
+            </div>
+
+            <!-- Image 6 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 6)">View Strategy</button>
+                    <img src="Golden Rose\GRose 6.jpeg" class="gallery-image" alt="Image 6" onclick="openLightbox('Hawana Resort/Hawana 6 .jpeg', '06')">
+                </div>
+                <div class="image-caption">06</div>
+            </div>
+
+            <!-- Image 7 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 7)">View Strategy</button>
+                    <img src="Golden Rose\GRose 7.jpeg" class="gallery-image" alt="Image 7" onclick="openLightbox('Hawana Resort/Hawana 7.jpeg', '07')">
+                </div>
+                <div class="image-caption">07</div>
+            </div>
+
+            <!-- Image 8 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 8)">View Strategy</button>
+                    <img src="Golden Rose\GRose 8.jpeg" class="gallery-image" alt="Image 8" onclick="openLightbox('Hawana Resort/Hawana 8.jpeg', '08')">
+                </div>
+                <div class="image-caption">08</div>
+            </div>
+
+            <!-- Image 9 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 9)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 9.jpg" class="gallery-image" alt="Image 9" onclick="openLightbox('Hawana Resort/Hawana 9.jpg', '09')">
+                </div>
+                <div class="image-caption">09</div>
+            </div>
+
+            <!-- Image 10 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 10)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 10.jpg" class="gallery-image" alt="Image 10" onclick="openLightbox('Hawana Resort/Hawana 10.jpg', '10')">
+                </div>
+                <div class="image-caption">10</div>
+            </div>
+
+            <!-- Image 11 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 11)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 11.jpeg" class="gallery-image" alt="Image 11" onclick="openLightbox('Hawana Resort/Hawana 11.jpeg', '11')">
+                </div>
+                <div class="image-caption">11</div>
+            </div>
+
+            <!-- Image 12 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 12)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 12.jpeg" class="gallery-image" alt="Image 12" onclick="openLightbox('Hawana Resort/Hawana 12.jpeg', '12')">
+                </div>
+                <div class="image-caption">12</div>
+            </div>
+
+            <!-- Image 13 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 13)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 13.png" class="gallery-image" alt="Image 13" onclick="openLightbox('Hawana Resort/Hawana 13.png', '13')">
+                </div>
+                <div class="image-caption">13</div>
+            </div>
+
+            <!-- Image 14 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 14)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 14.jpeg" class="gallery-image" alt="Image 14" onclick="openLightbox('Hawana Resort/Hawana 14.jpeg', '14')">
+                </div>
+                <div class="image-caption">14</div>
+            </div>
+
+            <!-- Image 15 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 15)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 15.png" class="gallery-image" alt="Image 15" onclick="openLightbox('Hawana Resort/Hawana 15.png', '15')">
+                </div>
+                <div class="image-caption">15</div>
+            </div>
+
+            <!-- Image 16 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 16)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 16.jpeg" class="gallery-image" alt="Image 16" onclick="openLightbox('Hawana Resort/Hawana 16.jpeg', '16')">
+                </div>
+                <div class="image-caption">16</div>
+            </div>
+
+            <!-- Image 17 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 17)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 17.jpeg" class="gallery-image" alt="Image 17" onclick="openLightbox('Hawana Resort/Hawana 17.jpeg', '17')">
+                </div>
+                <div class="image-caption">17</div>
+            </div>
+
+            <!-- Image 18 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 18)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 18.jpeg" class="gallery-image" alt="Image 18" onclick="openLightbox('Hawana Resort/Hawana 18.jpeg', '18')">
+                </div>
+                <div class="image-caption">18</div>
+            </div>
+
+            <!-- Image 19 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 19)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 19.png" class="gallery-image" alt="Image 19" onclick="openLightbox('Hawana Resort/Hawana 19.jpeg', '19')">
+                </div>
+                <div class="image-caption">19</div>
+            </div>
+
+            <!-- Image 20 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 20)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 20.jpeg" class="gallery-image" alt="Image 20" onclick="openLightbox('Hawana Resort/Hawana 20.jpeg', '20')">
+                </div>
+                <div class="image-caption">20</div>
+            </div>
+
+            <!-- Image 21 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 21)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 21.png" class="gallery-image" alt="Image 21" onclick="openLightbox('Hawana Resort/Hawana 21.jpeg', '21')">
+                </div>
+                <div class="image-caption">21</div>
+            </div>
+
+            <!-- Image 22 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 22)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 22.jpeg" class="gallery-image" alt="Image 22" onclick="openLightbox('Hawana Resort/Hawana 22.jpeg', '22')">
+                </div>
+                <div class="image-caption">22</div>
+            </div>
+
+            <!-- Image 23 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 23)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 23.jpeg" class="gallery-image" alt="Image 23" onclick="openLightbox('Hawana Resort/Hawana 23.jpeg', '23')">
+                </div>
+                <div class="image-caption">23</div>
+            </div>
+
+            <!-- Image 24 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 24)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 24.jpeg" class="gallery-image" alt="Image 24" onclick="openLightbox('Hawana Resort/Hawana 24.jpeg', '24')">
+                </div>
+                <div class="image-caption">24</div>
+            </div>
+
+            <!-- Image 25 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 25)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 25.jpeg" class="gallery-image" alt="Image 25" onclick="openLightbox('Hawana Resort/Hawana 25.jpeg', '25')">
+                </div>
+                <div class="image-caption">25</div>
+            </div>
+
+            <!-- Image 26 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 26)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 26.jpeg" class="gallery-image" alt="Image 26" onclick="openLightbox('Hawana Resort/Hawana 26.jpeg', '26')">
+                </div>
+                <div class="image-caption">26</div>
+            </div>
+
+            <!-- Image 27 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 27)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 27.jpeg" class="gallery-image" alt="Image 27" onclick="openLightbox('Hawana Resort/Hawana 27.jpeg', '27')">
+                </div>
+                <div class="image-caption">27</div>
+            </div>
+
+            <!-- Image 28 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 28)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 28.jpeg" class="gallery-image" alt="Image 28" onclick="openLightbox('Hawana Resort/Hawana 28.jpeg', '28')">
+                </div>
+                <div class="image-caption">28</div>
+            </div>
+
+            <!-- Image 29 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 29)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 29.jpeg" class="gallery-image" alt="Image 29" onclick="openLightbox('Hawana Resort/Hawana 29.jpeg', '29')">
+                </div>
+                <div class="image-caption">29</div>
+            </div>
+
+            <!-- Image 30 -->
+            <div class="gallery-item">
+                <div class="image-wrapper">
+                    <button class="view-strategy-btn" onclick="showStrategyPopup(event, 30)">View Strategy</button>
+                    <img src="Hawana Resort/Hawana 30.png" class="gallery-image" alt="Image 30" onclick="openLightbox('Hawana Resort/Hawana 30.jpeg', '30')">
+                </div>
+                <div class="image-caption">30</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 BrandLift. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="Terms&Condion.html">Terms of Service</a></p>
+    </footer>
+
+    <!-- Popup for View Strategy -->
+    <div class="overlay"></div>
+    <div class="strategy-popup">
+        <span class="close-btn" onclick="closeStrategyPopup()">&times;</span>
+        <span class="strategy-icon">📈</span>
+        <h3>Marketing Strategy</h3>
+        <div class="strategy-content">
+            <p id="strategy-content"> </p>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content">
+            <img src="" alt="Lightbox Image">
+            <div class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 0 });
+
+        function hamburg() {
+            document.querySelector(".dropdown").classList.add("active");
+        }
+
+        function cancel() {
+            document.querySelector(".dropdown").classList.remove("active");
+        }
+
+        // Strategy Content for each image
+        const strategies = [
+            { title: "Image 1 Strategy", content: "📌 Strategy for Image 1" },
+            { title: "Image 2 Strategy", content: "📌 Strategy for Image 2" },
+            { title: "Image 3 Strategy", content: "📌 Strategy for Image 3" },
+            { title: "Image 4 Strategy", content: "📌 Strategy for Image 4" },
+            { title: "Image 5 Strategy", content: "📌 Strategy for Image 5" },
+            { title: "Image 6 Strategy", content: "📌 Strategy for Image 6" },
+            { title: "Image 7 Strategy", content: "📌 Strategy for Image 7" },
+            { title: "Image 8 Strategy", content: "📌 Strategy for Image 8" },
+            { title: "Image 9 Strategy", content: "📌 Strategy for Image 9" },
+            { title: "Image 10 Strategy", content: "📌 Strategy for Image 10" },
+            { title: "Image 11 Strategy", content: "📌 Strategy for Image 11" },
+            { title: "Image 12 Strategy", content: "📌 Strategy for Image 12" },
+            { title: "Image 13 Strategy", content: "📌 Strategy for Image 13" },
+            { title: "Image 14 Strategy", content: "📌 Strategy for Image 14" },
+            { title: "Image 15 Strategy", content: "📌 Strategy for Image 15" },
+            { title: "Image 16 Strategy", content: "📌 Strategy for Image 16" },
+            { title: "Image 17 Strategy", content: "📌 Strategy for Image 17" },
+            { title: "Image 18 Strategy", content: "📌 Strategy for Image 18" },
+            { title: "Image 19 Strategy", content: "📌 Strategy for Image 19" },
+            { title: "Image 20 Strategy", content: "📌 Strategy for Image 20" },
+            { title: "Image 21 Strategy", content: "📌 Strategy for Image 21" },
+            { title: "Image 22 Strategy", content: "📌 Strategy for Image 22" },
+            { title: "Image 23 Strategy", content: "📌 Strategy for Image 23" },
+            { title: "Image 24 Strategy", content: "📌 Strategy for Image 24" },
+            { title: "Image 25 Strategy", content: "📌 Strategy for Image 25" },
+            { title: "Image 26 Strategy", content: "📌 Strategy for Image 26" },
+            { title: "Image 27 Strategy", content: "📌 Strategy for Image 27" },
+            { title: "Image 28 Strategy", content: "📌 Strategy for Image 28" },
+            { title: "Image 29 Strategy", content: "📌 Strategy for Image 29" },
+            { title: "Image 30 Strategy", content: "📌 Strategy for Image 30" }
+        ];
+
+        // Prevent image click when clicking the View Strategy button
+        function showStrategyPopup(event, index) {
+            event.stopPropagation();
+            const popup = document.querySelector('.strategy-popup');
+            const overlay = document.querySelector('.overlay');
+            
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+            
+            // Update the strategy content based on the image clicked
+            document.getElementById('strategy-content').textContent = strategies[index - 1].content;
+            
+            // Add animation
+            setTimeout(() => {
+                popup.style.transform = 'translate(-50%, -50%) scale(1)';
+                popup.style.opacity = '1';
+            }, 10);
+        }
+
+        // Function to close the strategy popup
+        function closeStrategyPopup() {
+            const popup = document.querySelector('.strategy-popup');
+            const overlay = document.querySelector('.overlay');
+            
+            popup.style.transform = 'translate(-50%, -50%) scale(0.9)';
+            popup.style.opacity = '0';
+            
+            setTimeout(() => {
+                popup.style.display = 'none';
+                overlay.style.display = 'none';
+            }, 300);
+        }
+
+        // Close popup when clicking outside of it
+        document.querySelector('.overlay').onclick = closeStrategyPopup;
+
+        // Lightbox functionality
+        function openLightbox(imageSrc, caption) {
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = lightbox.querySelector('img');
+            const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+
+            lightboxImg.src = imageSrc;
+            lightboxCaption.textContent = caption;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.querySelector('.lightbox');
+            lightbox.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

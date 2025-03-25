@@ -14,16 +14,6 @@
     <link rel="icon" type="image/png" href="Home Image/favicon.ico">
     <link rel="apple-touch-icon" href="Home Image/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="Home Image/favicon.ico">
-
-
-
-
-
-
-
-
-
-
     
     <style>
         :root {
@@ -368,6 +358,155 @@
             background: var(--secondary-color);
         }
 
+        /* Customer Reviews Section */
+        .reviews-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f5f7fa, #e4e8eb);
+            text-align: center;
+        }
+
+        .reviews-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--secondary-color);
+        }
+
+        .reviews-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .reviews-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .review-card {
+            min-width: 100%;
+            padding: 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .review-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            max-width: 700px;
+        }
+
+        .review-content::before {
+            content: "\201C";
+            font-size: 80px;
+            color: var(--primary-color);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        .review-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            text-align: left;
+        }
+
+        .review-rating {
+            color: var(--accent-color);
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .slider-controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--primary-color);
+        }
+
+        .slider-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background: var(--secondary-color);
+        }
+
         footer {
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
@@ -422,7 +561,7 @@
             <div class="content">
                 <h1 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">Hey! We are <span>BrandLift</span></h1>
                 <div class="typewriter" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="900">We are <span class="typewriter-text"></span><label>|</label></div>
-                <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">“As a dynamic social media marketing agency, we blend creativity with strategy to craft visually captivating and results-driven campaigns that engage audiences, drive growth, and elevate brands in the digital world.”</p>
+                <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">"As a dynamic social media marketing agency, we blend creativity with strategy to craft visually captivating and results-driven campaigns that engage audiences, drive growth, and elevate brands in the digital world."</p>
                 <div class="social-links">
                     <a href="https://github.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1300" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
                     <a href="https://www.facebook.com" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1400" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
@@ -441,6 +580,252 @@
             <!-- Projects will be dynamically added here -->
         </div>
     </section>
+    
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section">
+        <h2 data-aos="fade-up" data-aos-duration="1500">What Our Clients Say</h2>
+        <div class="reviews-container">
+            <div class="reviews-slider" id="reviews-slider">
+                <!-- Review 1 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"BrandLift completely transformed our social media presence. Within just 3 months, our engagement increased by 300% and we gained over 10,000 new followers. Their creative approach and data-driven strategies are unmatched in the industry."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>CEO, Bloom Cosmetics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"Working with BrandLift has been a game-changer for our startup. They understood our brand voice perfectly and created content that resonated with our target audience. Our conversion rates have never been higher!"</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <p>Founder, TechNova</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="review-text">"The team at BrandLift is incredibly responsive and professional. They took the time to understand our business goals and delivered a social media strategy that exceeded our expectations. Highly recommend their services!"</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez">
+                            </div>
+                            <div class="author-info">
+                                <h4>Emily Rodriguez</h4>
+                                <p>Marketing Director, Urban Eats</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 4 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"BrandLift's influencer marketing campaign delivered exceptional ROI. They connected us with the perfect influencers who authentically represented our brand. Our sales increased by 150% during the campaign period."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="David Wilson">
+                            </div>
+                            <div class="author-info">
+                                <h4>David Wilson</h4>
+                                <p>VP of Marketing, ActiveLife</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 5 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"As a small business owner, I was skeptical about investing in social media marketing. BrandLift proved me wrong! Their targeted ads brought in so many new customers that we had to hire additional staff to keep up with demand."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/51.jpg" alt="Lisa Thompson">
+                            </div>
+                            <div class="author-info">
+                                <h4>Lisa Thompson</h4>
+                                <p>Owner, Thompson Bakery</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 6 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"The content calendar and strategy BrandLift developed for us has saved us countless hours while dramatically improving our results. Their team is creative, strategic, and truly cares about our success."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Robert Garcia">
+                            </div>
+                            <div class="author-info">
+                                <h4>Robert Garcia</h4>
+                                <p>CMO, Summit Financial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 7 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"BrandLift's rebranding of our social media profiles was nothing short of spectacular. They captured our company's essence while making us look modern and appealing to younger demographics. The results speak for themselves!"</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Jennifer Lee">
+                            </div>
+                            <div class="author-info">
+                                <h4>Jennifer Lee</h4>
+                                <p>Director of Communications, Heritage Hotels</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 8 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="review-text">"What sets BrandLift apart is their analytics expertise. They don't just create beautiful content - they measure everything and constantly optimize. We've seen our cost per acquisition drop by 40% since working with them."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Thomas Baker">
+                            </div>
+                            <div class="author-info">
+                                <h4>Thomas Baker</h4>
+                                <p>E-commerce Manager, Outdoor Gear Co.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 9 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"We've worked with several marketing agencies before finding BrandLift. Finally, an agency that delivers on their promises! Their video content strategy went viral and brought us national attention we never expected."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/76.jpg" alt="Amanda Smith">
+                            </div>
+                            <div class="author-info">
+                                <h4>Amanda Smith</h4>
+                                <p>Brand Manager, Pure Skincare</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 10 -->
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-content">
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="review-text">"From crisis management to day-to-day posting, BrandLift handles all our social media needs with professionalism and creativity. They've become an extension of our marketing team and we couldn't be happier with the partnership."</p>
+                        <div class="review-author">
+                            <div class="author-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Daniel Kim">
+                            </div>
+                            <div class="author-info">
+                                <h4>Daniel Kim</h4>
+                                <p>CEO, Fusion Restaurant Group</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-btn" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-dots" id="slider-dots">
+                <!-- Dots will be added dynamically -->
+            </div>
+            <button class="slider-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+    
     <footer>
         <p>&copy; 2025 BrandLift. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="Terms&Condion.html">Terms of Service</a></p>
     </footer>
@@ -512,6 +897,81 @@
             `;
 
             projectsContainer.appendChild(projectCard);
+        });
+
+        // Reviews Slider Functionality
+        const slider = document.getElementById('reviews-slider');
+        const slides = document.querySelectorAll('.review-card');
+        const dotsContainer = document.getElementById('slider-dots');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        let currentSlide = 0;
+        const slideCount = slides.length;
+        
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+        
+        // Update slider position
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Go to specific slide
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlider();
+            resetAutoSlide();
+        }
+        
+        // Next slide
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlider();
+            resetAutoSlide();
+        }
+        
+        // Previous slide
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            updateSlider();
+            resetAutoSlide();
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Auto slide
+        let autoSlideInterval = setInterval(nextSlide, 5000);
+        
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        // Pause on hover
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            resetAutoSlide();
         });
 
         document.addEventListener("DOMContentLoaded", () => {

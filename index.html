@@ -358,6 +358,96 @@
             background: var(--secondary-color);
         }
 
+        /* Vision Section */
+        .vision-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .vision-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00f2ff, transparent);
+            animation: neon-line 2s linear infinite;
+            box-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+        }
+
+        @keyframes neon-line {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+            border: 1px solid rgba(0, 242, 255, 0.1);
+        }
+
+        .vision-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00f2ff, #0066ff, #00f2ff);
+            z-index: -1;
+            border-radius: 16px;
+            animation: border-glow 3s linear infinite;
+            background-size: 400%;
+            opacity: 0.7;
+        }
+
+        @keyframes border-glow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .vision-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .vision-highlight {
+            color: #00f2ff;
+            font-weight: bold;
+            text-shadow: 0 0 5px #00f2ff;
+        }
+
         /* Customer Reviews Section */
         .reviews-section {
             padding: 80px 20px;
@@ -574,6 +664,21 @@
             </div>
         </div>
     </section>
+    
+    <!-- Vision Section -->
+    <section class="vision-section" data-aos="fade-up" data-aos-duration="1500">
+        <h2>Our Vision</h2>
+        <div class="vision-content">
+            <p>At <span class="vision-highlight">BrandLift</span>, we envision a digital landscape where brands don't just exist - they <span class="vision-highlight">thrive, connect, and inspire</span>.</p>
+            
+            <p>We see a future where every business, regardless of size, can harness the <span class="vision-highlight">transformative power of social media</span> to build meaningful relationships with their audience, create authentic engagement, and drive sustainable growth.</p>
+            
+            <p>Our vision is to be the <span class="vision-highlight">catalyst for digital excellence</span>, pioneering innovative strategies that blend cutting-edge technology with human-centric storytelling to elevate brands beyond conventional marketing boundaries.</p>
+            
+            <p>We're committed to shaping a world where social media becomes a <span class="vision-highlight">force for positive change</span>, fostering communities that celebrate diversity, creativity, and shared values.</p>
+        </div>
+    </section>
+
     <section class="projects-section">
         <h2 data-aos="fade-up" data-aos-duration="1500">Our Projects</h2>
         <div class="projects-container" id="projects-container">
